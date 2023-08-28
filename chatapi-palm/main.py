@@ -42,7 +42,7 @@ def hello_chat(req: flask.Request) -> Mapping[str, Any]:
 
   # 応答をChat形式に変更
   chat_response = {
-    "text": res.text
+    "text": res
   }
 
   return chat_response
