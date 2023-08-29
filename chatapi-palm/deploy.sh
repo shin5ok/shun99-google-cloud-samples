@@ -10,6 +10,8 @@ gcloud functions deploy \
     --source=. \
     --entry-point=hello_chat \
     --trigger-http \
+    --max-instances=1 \
+    --memory=1Gi \
     --allow-unauthenticated \
     --set-env-vars=PROJECT_NUMBER=${PROJECT_NUMBER},PROJECT_ID=${PROJECT_ID}
 
