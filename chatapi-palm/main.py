@@ -25,11 +25,12 @@ def hello_chat(req: flask.Request) -> Mapping[str, Any]:
     if auth_header:
         bearer_token = auth_header.split(' ')[1]  # Authorization: Bearer <token>
     else:
-        print('Invalid token')
-        return flask.abort(403)
+        print('Invalid header')
+        flask.abort(401)
 
     # tokenの検証
-    verify_id_token(PROJECT_NUMBER, bearer_token)
+    if not verify_id_token(PROJECT_NUMBER, bearer_token):
+      flask.abort(403)
   
   request_json = req.get_json(silent=True)
   if request_json:

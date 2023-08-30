@@ -1,7 +1,7 @@
 import sys
 from oauth2client import client
 
-def verify_id_token(project_number, token):
+def verify_id_token(project_number, token) -> bool:
   # Project番号を指定してください
   audience = project_number
 
@@ -20,9 +20,11 @@ def verify_id_token(project_number, token):
     token = client.verify_id_token(bearer_token, audience, cert_uri=public_cert_url_prefix + chat_issuer)
 
     if token['iss'] != chat_issuer:
-      sys.exit('Invalid issuee')
-  except:
-    sys.exit('Invalid token')
+      raise Exception('Invalid issuer')
+  except Exception as e:
+    print(e)
+    return False
 
   # トークンが有効
   print('The token is valid')
+  return True
