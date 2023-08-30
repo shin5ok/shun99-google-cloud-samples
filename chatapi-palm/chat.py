@@ -23,7 +23,8 @@ class Chat:
         }
         parameters.update(params)
         from langchain.llms import VertexAI
-        llm = VertexAI(**parameters)
+        from langchain.chat_models import ChatVertexAI
+        llm = ChatVertexAI(**parameters)
         self.chat_model = ConversationChain(
             llm=llm,
             verbose=True,
