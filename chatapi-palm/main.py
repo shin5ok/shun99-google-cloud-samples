@@ -46,5 +46,5 @@ def hello_chat(req: flask.Request) -> Mapping[str, Any]:
     "text": res
   }
 
-  return chat_response
+  return flask.jsonify(chat_response)
   
